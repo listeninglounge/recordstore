@@ -3,16 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Landing Page</title>
+  <title>Your Name | Landing Page</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="container">
-    <h1>Welcome 👋</h1>
-    <p>I build cool things on the web.</p>
-    <button id="ctaBtn">Click me</button>
-    <p id="message"></p>
+  <header class="nav">
+    <div class="logo">YN</div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button id="themeBtn" class="theme-btn">🌙</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Build something people remember.</h1>
+      <p>A simple interactive landing page hosted on GitHub Pages.</p>
+      <a class="cta" href="#contact">Get Started</a>
+    </section>
+
+    <section id="features" class="section">
+      <h2>Features</h2>
+      <div class="cards">
+        <article class="card">
+          <h3>Fast</h3>
+          <p>Loads quickly with lightweight HTML, CSS, and JS.</p>
+        </article>
+        <article class="card">
+          <h3>Modern</h3>
+          <p>Clean layout, subtle animations, and responsive design.</p>
+        </article>
+        <article class="card">
+          <h3>Interactive</h3>
+          <p>Theme toggle and smooth transitions for a polished feel.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>I’m learning web design and building my first live project 🎉</p>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <form id="contactForm" class="contact-form">
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button type="submit">Join</button>
+      </form>
+      <p id="formMessage"></p>
+    </section>
   </main>
+
+  <footer>
+    <p>© <span id="year"></span> Your Name</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
