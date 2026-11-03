@@ -1,202 +1,60 @@
-:root {
-  --bg: #0b0a11;
-  --panel: #171426;
-  --panel-2: #211a38;
-  --text: #f5f4ff;
-  --muted: #c8c2e6;
-  --neon-pink: #ff4ecd;
-  --neon-blue: #43d9ff;
-  --neon-lime: #b7ff5c;
-  --focus: #fff38a;
-  --shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listening Lounge</title>
+  <meta name="description" content="Choose your path in the Listening Lounge: Podcast Feature, Skilling Sessions, or Mindset Training." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 
-* {
-  box-sizing: border-box;
-}
+  <header class="hero" role="banner">
+    <p class="eyebrow">AI Skills Navigator Experience</p>
+    <h1>Listening Lounge</h1>
+    <p class="intro">Drop the needle and choose your next learning track.</p>
+  </header>
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+  <main id="main-content" class="main" aria-label="Now Spinning">
+    <section class="selector" aria-labelledby="now-spinning-title">
+      <h2 id="now-spinning-title">Now Spinning</h2>
 
-body {
-  font-family: "Segoe UI", Inter, system-ui, Arial, sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(1200px 600px at 15% -10%, rgba(255, 78, 205, 0.22), transparent 60%),
-    radial-gradient(1000px 600px at 95% -15%, rgba(67, 217, 255, 0.18), transparent 60%),
-    linear-gradient(160deg, #0a0913 0%, #0d0b1b 35%, #14102a 100%);
-  line-height: 1.5;
-}
+      <div class="card-grid">
+        <article class="record-card" aria-label="Podcast Feature option">
+          <div class="vinyl" aria-hidden="true"></div>
+          <h3>Podcast Feature</h3>
+          <p>Tune into stories and insights from AI voices shaping what’s next.</p>
+          <a class="cta" href="PASTE_URL_1" target="_blank" rel="noopener noreferrer" aria-label="Open Podcast Feature in AI Skills Navigator">
+            Open in AI Skills Navigator
+          </a>
+        </article>
 
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-}
+        <article class="record-card" aria-label="Skilling Sessions option">
+          <div class="vinyl" aria-hidden="true"></div>
+          <h3>Skilling Sessions</h3>
+          <p>Join guided sessions to level up practical AI skills, fast.</p>
+          <a class="cta" href="PASTE_URL_2" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
+            Open in AI Skills Navigator
+          </a>
+        </article>
 
-.skip-link:focus {
-  left: 1rem;
-  top: 1rem;
-  z-index: 999;
-  background: #000;
-  color: #fff;
-  padding: 0.6rem 0.9rem;
-  border-radius: 0.5rem;
-}
+        <article class="record-card" aria-label="Mindset Training option">
+          <div class="vinyl" aria-hidden="true"></div>
+          <h3>Mindset Training</h3>
+          <p>Build habits and confidence to lead with an AI-first mindset.</p>
+          <a class="cta" href="PASTE_URL_3" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
+            Open in AI Skills Navigator
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
 
-.hero {
-  text-align: center;
-  padding: 4rem 1rem 2rem;
-}
+  <footer class="footer">
+    <p>Powered by AI Skills Navigator</p>
+  </footer>
 
-.eyebrow {
-  display: inline-block;
-  margin: 0;
-  padding: 0.35rem 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 999px;
-  font-size: 0.82rem;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.04);
-}
-
-h1 {
-  margin: 0.9rem 0 0.4rem;
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  line-height: 1.12;
-  letter-spacing: 0.02em;
-  text-shadow: 0 0 18px rgba(67, 217, 255, 0.28);
-}
-
-.intro {
-  margin: 0 auto;
-  max-width: 42rem;
-  color: var(--muted);
-  font-size: clamp(1rem, 2.3vw, 1.15rem);
-}
-
-.main {
-  width: min(1120px, 92%);
-  margin: 0 auto;
-  padding-bottom: 3rem;
-}
-
-.selector h2 {
-  margin: 0 0 1rem;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  letter-spacing: 0.02em;
-}
-
-.card-grid {
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(12, 1fr);
-}
-
-.record-card {
-  grid-column: span 12;
-  background: linear-gradient(160deg, var(--panel), var(--panel-2));
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 1rem;
-  padding: 1.1rem;
-  box-shadow: var(--shadow);
-  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.record-card::after {
-  content: "";
-  position: absolute;
-  inset: auto -30% -40% -30%;
-  height: 120px;
-  background: linear-gradient(90deg, transparent, rgba(67, 217, 255, 0.16), transparent);
-  filter: blur(14px);
-  pointer-events: none;
-}
-
-.record-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(183, 255, 92, 0.62);
-  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.52), 0 0 24px rgba(183, 255, 92, 0.2);
-}
-
-.vinyl {
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
-  margin-bottom: 0.9rem;
-  background:
-    radial-gradient(circle at center, #111 0 11px, #2f2f2f 11px 14px, #111 14px 16px, transparent 16px),
-    repeating-radial-gradient(circle at center, #121212 0 3px, #1d1d1d 3px 6px);
-  border: 2px solid #000;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 4px 14px rgba(0, 0, 0, 0.45);
-  transition: transform 320ms ease;
-}
-
-.record-card:hover .vinyl {
-  animation: spin 1.2s linear infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.record-card h3 {
-  margin: 0 0 0.45rem;
-  font-size: 1.28rem;
-}
-
-.record-card p {
-  margin: 0 0 1rem;
-  color: var(--muted);
-}
-
-.cta {
-  display: inline-block;
-  text-decoration: none;
-  font-weight: 600;
-  color: #111;
-  background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
-  padding: 0.65rem 0.9rem;
-  border-radius: 0.65rem;
-  transition: transform 140ms ease, filter 140ms ease;
-}
-
-.cta:hover {
-  transform: translateY(-1px);
-  filter: brightness(1.06);
-}
-
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 3px;
-}
-
-.footer {
-  text-align: center;
-  color: var(--muted);
-  padding: 1rem 1rem 2rem;
-  font-size: 0.95rem;
-}
-
-/* Tablet and up */
-@media (min-width: 700px) {
-  .record-card {
-    grid-column: span 6;
-    padding: 1.25rem;
-  }
-}
-
-/* Desktop */
-@media (min-width: 1000px) {
-  .record-card {
-    grid-column: span 4;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
