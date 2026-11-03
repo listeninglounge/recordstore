@@ -24,19 +24,15 @@
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%}
 
-    body{
-      font-family: "Trebuchet MS","Segoe UI",Arial,sans-serif;
-      color:var(--text);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.38), rgba(0,0,0,.48)),
-        repeating-linear-gradient(
-          90deg,
-          var(--wall-1) 0 42px,
-          var(--wall-2) 42px 84px,
-          var(--wall-3) 84px 126px
-        );
-      overflow-x:hidden;
-    }
+body{
+  font-family: "Trebuchet MS","Segoe UI",Arial,sans-serif;
+  color:var(--text);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.32), rgba(0,0,0,.48)),
+    url("listening-lounge-bg.jpg") center center / cover no-repeat fixed;
+  overflow-x:hidden;
+}
+
 
     /* wall sconces + light cones */
     body::before{
