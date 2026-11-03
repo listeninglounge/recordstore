@@ -7,43 +7,42 @@
   <meta name="description" content="Touchscreen Listening Lounge for AI Skills Navigator." />
   <style>
     :root{
-      --bg-1:#180b2d;
-      --bg-2:#2b0f49;
-      --ink:#fffaf5;
-      --muted:#f7dff0;
-      --focus:#fff176;
-
-      --pod-1:#ff7a8a;
-      --pod-2:#ffb36b;
-
-      --skill-1:#62d7ff;
-      --skill-2:#55ffa9;
-
-      --mind-1:#d07cff;
-      --mind-2:#ff78d1;
-
-      --card:#2a1545cc;
-      --ring:#ffffff2f;
-      --shadow:0 14px 34px rgba(0,0,0,.35);
+      --wood-dark:#2a1b14;
+      --wood-mid:#3a261c;
+      --wood-light:#5a3b2c;
+      --cream:#f5eadb;
+      --ink:#1f1814;
+      --gold:#d8ab63;
+      --neon-pink:#ff6ea8;
+      --neon-teal:#59e3d2;
+      --neon-amber:#ffbe6b;
+      --focus:#fff08a;
+      --shadow:0 12px 28px rgba(0,0,0,.28);
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%}
     body{
-      font-family: "Segoe UI", Inter, Arial, sans-serif;
-      color:var(--ink);
+      font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
+      color:var(--cream);
       background:
-        radial-gradient(900px 500px at 8% -10%, #ff6bc133, transparent 60%),
-        radial-gradient(800px 500px at 100% 0%, #6be7ff33, transparent 60%),
-        linear-gradient(160deg,var(--bg-1),var(--bg-2));
+        radial-gradient(1200px 600px at 12% -10%, rgba(255,110,168,.18), transparent 60%),
+        radial-gradient(1000px 600px at 90% -15%, rgba(89,227,210,.14), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.20)),
+        repeating-linear-gradient(
+          90deg,
+          var(--wood-dark) 0 40px,
+          var(--wood-mid) 40px 80px,
+          var(--wood-light) 80px 120px
+        );
       overflow-x:hidden;
     }
 
     .wrap{
       min-height:100vh;
       display:grid;
-      grid-template-rows:auto 1fr auto;
-      gap:18px;
+      grid-template-rows:auto auto 1fr auto;
+      gap:14px;
       padding:clamp(14px,2vw,28px);
     }
 
@@ -52,145 +51,180 @@
       max-width:1100px;
       margin:0 auto;
     }
+
     .chip{
       display:inline-block;
-      padding:.4rem .85rem;
+      padding:.42rem .9rem;
       border-radius:999px;
-      border:1px solid #ffffff42;
-      background:#ffffff1a;
-      color:var(--muted);
-      font-weight:600;
+      border:1px solid rgba(255,255,255,.36);
+      background:rgba(0,0,0,.22);
+      color:#f7e7d1;
+      font-weight:700;
+      letter-spacing:.04em;
       font-size:clamp(.85rem,1.4vw,1rem);
-      letter-spacing:.02em;
     }
+
     h1{
       margin:.75rem 0 .35rem;
-      font-size:clamp(2.1rem,6vw,4rem);
+      font-size:clamp(2.1rem,6vw,4.1rem);
       line-height:1.02;
       letter-spacing:.02em;
-      text-shadow:0 0 24px #ff8fe955;
+      text-shadow:
+        0 0 14px rgba(255,110,168,.45),
+        0 0 24px rgba(89,227,210,.28);
     }
+
     .sub{
       margin:0 auto;
-      max-width:68ch;
-      color:var(--muted);
+      max-width:70ch;
+      color:#f2dbc0;
       font-size:clamp(1rem,2vw,1.25rem);
     }
 
-    .now-spinning{
-      width:min(1200px,100%);
+    .marquee{
+      width:min(1000px,100%);
       margin:0 auto;
-      padding:.4rem .2rem 0;
+      border-top:2px solid rgba(216,171,99,.7);
+      border-bottom:2px solid rgba(216,171,99,.7);
+      background:rgba(0,0,0,.24);
+      border-radius:10px;
+      padding:.5rem .75rem;
+      text-align:center;
+      color:#ffd9ad;
+      font-weight:700;
+      letter-spacing:.08em;
+      font-size:clamp(.85rem,1.3vw,1rem);
+    }
+
+    .now-spinning{
+      width:100%;
+      display:grid;
+      place-items:center;
+      padding-top:.3rem;
     }
 
     .grid{
+      width:min(1120px,100%);
       display:grid;
-      grid-template-columns:repeat(12,1fr);
+      grid-template-columns:1fr;
       gap:clamp(14px,1.8vw,24px);
-      margin-top:12px;
     }
 
     .card{
-      grid-column:span 12;
-      position:relative;
-      overflow:hidden;
-      border-radius:24px;
-      border:2px solid var(--ring);
-      background:var(--card);
+      width:100%;
+      max-width:650px;
+      margin-inline:auto;
       text-decoration:none;
       color:inherit;
+      border-radius:18px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.03)),
+        #f7efe3;
+      color:var(--ink);
+      border:3px solid #eadbc6;
       box-shadow:var(--shadow);
-      min-height:220px;
+      min-height:230px;
       padding:20px;
       display:grid;
       gap:10px;
       align-content:start;
+      position:relative;
+      overflow:hidden;
       touch-action:manipulation;
       -webkit-tap-highlight-color: transparent;
-      transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
+      transition:transform .12s ease, box-shadow .12s ease;
     }
 
     .card:active{ transform:scale(.985); }
     .card:focus-visible{
       outline:4px solid var(--focus);
-      outline-offset:3px;
-      border-color:transparent;
+      outline-offset:4px;
     }
 
-    .card .vinyl{
-      width:78px;height:78px;border-radius:50%;
-      background:
-        radial-gradient(circle at center,#0c0c0c 0 10px,#3a3a3a 10px 14px,#0c0c0c 14px 17px,transparent 17px),
-        repeating-radial-gradient(circle at center,#181818 0 3px,#222 3px 6px);
-      border:2px solid #000;
-      box-shadow:inset 0 0 0 1px #ffffff14, 0 6px 12px #00000066;
-    }
-
-    .card h2{
-      margin:2px 0 0;
-      font-size:clamp(1.45rem,2.4vw,2rem);
-      line-height:1.1;
-    }
-    .card p{
-      margin:0;
-      max-width:34ch;
-      font-size:clamp(1rem,1.4vw,1.12rem);
-      color:#fff3fb;
-    }
-
-    .tap{
-      margin-top:auto;
-      display:inline-block;
-      width:fit-content;
-      font-weight:800;
-      letter-spacing:.01em;
-      border-radius:999px;
-      padding:.6rem .95rem;
-      font-size:clamp(1rem,1.3vw,1.1rem);
-      border:1px solid #ffffff4d;
-      background:#00000033;
+    .card::before{
+      content:"";
+      position:absolute;
+      top:0; left:0; right:0;
+      height:12px;
+      background:linear-gradient(90deg, #0000, rgba(0,0,0,.08), #0000);
+      pointer-events:none;
     }
 
     .card::after{
       content:"";
       position:absolute;
-      right:-40px;bottom:-40px;
-      width:150px;height:150px;border-radius:50%;
-      border:12px solid #ffffff24;
+      right:-28px; bottom:-28px;
+      width:120px; height:120px;
+      border-radius:50%;
+      border:10px solid rgba(0,0,0,.10);
       pointer-events:none;
     }
 
-    .podcast{ background:linear-gradient(155deg,var(--pod-1),var(--pod-2)); color:#2f0712; }
-    .podcast p{ color:#3f1221; }
-    .podcast .tap{ background:#ffffffd9; color:#3b1020; }
-    .podcast .vinyl{ transform:rotate(-10deg); }
+    .vinyl{
+      width:76px;height:76px;border-radius:50%;
+      background:
+        radial-gradient(circle at center,#101010 0 10px,#3a3a3a 10px 14px,#111 14px 17px,transparent 17px),
+        repeating-radial-gradient(circle at center,#1a1a1a 0 3px,#242424 3px 6px);
+      border:2px solid #000;
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 6px 12px rgba(0,0,0,.35);
+    }
 
-    .skilling{ background:linear-gradient(155deg,var(--skill-1),var(--skill-2)); color:#042930; }
-    .skilling p{ color:#083944; }
-    .skilling .tap{ background:#ffffffd9; color:#0a3640; }
-    .skilling .vinyl{ transform:rotate(5deg); }
+    .card h2{
+      margin:2px 0 0;
+      font-size:clamp(1.45rem,2.3vw,2rem);
+      line-height:1.1;
+    }
 
-    .mindset{ background:linear-gradient(155deg,var(--mind-1),var(--mind-2)); color:#2e0a43; }
-    .mindset p{ color:#3f1258; }
-    .mindset .tap{ background:#ffffffd9; color:#41145b; }
-    .mindset .vinyl{ transform:rotate(-4deg); }
+    .card p{
+      margin:0;
+      max-width:36ch;
+      color:#3d2f25;
+      font-size:clamp(1rem,1.35vw,1.1rem);
+    }
+
+    .tap{
+      margin-top:auto;
+      width:fit-content;
+      display:inline-block;
+      font-weight:800;
+      border-radius:999px;
+      padding:.58rem .95rem;
+      border:2px solid rgba(0,0,0,.2);
+      background:#fffdf8;
+      font-size:clamp(1rem,1.2vw,1.08rem);
+    }
+
+    .podcast{ border-color:#ffc8a7; }
+    .podcast .tap{ background:linear-gradient(90deg,var(--neon-amber),#ffd9a8); }
+
+    .skilling{ border-color:#b7f7ed; }
+    .skilling .tap{ background:linear-gradient(90deg,var(--neon-teal),#baf8ef); }
+
+    .mindset{ border-color:#ffc0e1; }
+    .mindset .tap{ background:linear-gradient(90deg,var(--neon-pink),#ffc0de); }
 
     .footer{
       text-align:center;
-      color:var(--muted);
-      font-weight:600;
-      padding:4px 0 10px;
+      color:#f0dcc3;
+      font-weight:700;
       font-size:.98rem;
+      padding:4px 0 10px;
     }
 
     @media (min-width:860px){
-      .card{grid-column:span 4; min-height:300px; padding:24px;}
+      .grid{
+        grid-template-columns:repeat(3,minmax(260px,1fr));
+        align-items:stretch;
+      }
+      .card{
+        max-width:none;
+        min-height:300px;
+        padding:24px;
+      }
     }
 
-    @media (prefers-reduced-motion:no-preference){
-      .card:hover{ transform:translateY(-2px); }
-      .card:hover .vinyl{ animation:spin 1.15s linear infinite; }
-      @keyframes spin{ to{ transform:rotate(360deg);} }
+    @media (prefers-reduced-motion:reduce){
+      .card{ transition:none; }
     }
   </style>
 </head>
@@ -202,26 +236,25 @@
       <p class="sub">Pick a track and jump straight into your next AI learning moment.</p>
     </header>
 
+    <div class="marquee" aria-hidden="true">NOW SPINNING • LISTENING LOUNGE • PICK YOUR TRACK</div>
+
     <section class="now-spinning" aria-label="Now Spinning choices">
       <div class="grid">
-        <!-- TODO: Replace AI_NAV_PODCAST_URL with your real URL -->
-        <a id="podcastLink" class="card podcast" href="AI_NAV_PODCAST_URL" target="_blank" rel="noopener noreferrer" aria-label="Open AI-Generated Podcast in AI Skills Navigator">
+        <a class="card podcast" href="https://aiskillsnavigator.microsoft.com/en-us/player?catalogId=module-17b6568933a4fdc7bdcaa1911576b22ac47173f39ef0127bb12485f8c560341e" target="_blank" rel="noopener noreferrer" aria-label="Open AI-Generated Podcast in AI Skills Navigator">
           <div class="vinyl" aria-hidden="true"></div>
           <h2>AI-Generated Podcast</h2>
           <p>Listen to a quick, story-style audio experience with practical AI highlights.</p>
           <span class="tap">Tap to open</span>
         </a>
 
-        <!-- TODO: Replace AI_NAV_SKILLING_URL with your real URL -->
-        <a id="skillingLink" class="card skilling" href="AI_NAV_SKILLING_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
+        <a class="card skilling" href="https://aiskillsnavigator.microsoft.com/en-us/explore/search?type=skillingsession" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
           <div class="vinyl" aria-hidden="true"></div>
           <h2>Skilling Sessions</h2>
           <p>Explore guided sessions with actionable skills you can apply right away.</p>
           <span class="tap">Tap to open</span>
         </a>
 
-        <!-- TODO: Replace AI_NAV_MINDSET_URL with your real URL -->
-        <a id="mindsetLink" class="card mindset" href="AI_NAV_MINDSET_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
+        <a class="card mindset" href="https://aiskillsnavigator.microsoft.com/en-us/explore/search/video-b958f193e6f069f9e81d26605efb5c2074c349e3bb6b56c76ff25cb4add30840" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
           <div class="vinyl" aria-hidden="true"></div>
           <h2>Mindset Training</h2>
           <p>Build confidence and habits for adopting an AI-first way of working.</p>
@@ -232,24 +265,5 @@
 
     <footer class="footer">Powered by AI Skills Navigator</footer>
   </main>
-
-  <script>
-    // Guard against placeholder links before publishing.
-    const placeholders = {
-      podcastLink: "AI_NAV_PODCAST_URL",
-      skillingLink: "AI_NAV_SKILLING_URL",
-      mindsetLink: "AI_NAV_MINDSET_URL"
-    };
-
-    Object.entries(placeholders).forEach(([id, placeholder]) => {
-      const el = document.getElementById(id);
-      el.addEventListener("click", (e) => {
-        if (el.getAttribute("href") === placeholder) {
-          e.preventDefault();
-          alert("Add your real AI Skills Navigator URL in index.html first.");
-        }
-      });
-    });
-  </script>
 </body>
 </html>
