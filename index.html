@@ -1,60 +1,229 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Listening Lounge</title>
-  <meta name="description" content="Choose your path in the Listening Lounge: Podcast Feature, Skilling Sessions, or Mindset Training." />
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Touchscreen Listening Lounge with 3 pathways into AI Skills Navigator." />
+  <style>
+    :root {
+      --bg: #1a120f;
+      --bg-soft: #241915;
+      --panel: #2d201b;
+      --panel-2: #3a2a23;
+      --text: #fff9f3;
+      --muted: #e7d7cb;
+      --accent-1: #f5b971;
+      --accent-2: #ff8d6d;
+      --accent-3: #7ed6c1;
+      --focus: #ffe08a;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      font-family: "Segoe UI", Inter, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, #3b2720 0%, transparent 60%),
+        radial-gradient(1000px 600px at 100% 0%, #2e1f1a 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg), #130d0b 100%);
+    }
+
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      padding: clamp(16px, 2vw, 28px);
+      gap: 18px;
+    }
+
+    .header {
+      text-align: center;
+      padding-top: 8px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: clamp(0.9rem, 1.2vw, 1rem);
+      color: var(--muted);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 0.4rem 0.8rem;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 12px 0 8px;
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+    }
+
+    .sub {
+      margin: 0 auto;
+      max-width: 70ch;
+      font-size: clamp(1rem, 1.7vw, 1.25rem);
+      color: var(--muted);
+    }
+
+    .grid {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: clamp(14px, 1.8vw, 22px);
+      align-content: center;
+    }
+
+    .card {
+      grid-column: span 12;
+      text-decoration: none;
+      color: inherit;
+      background: linear-gradient(160deg, var(--panel), var(--panel-2));
+      border: 2px solid rgba(255,255,255,0.14);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: clamp(18px, 2vw, 28px);
+      min-height: clamp(180px, 24vh, 240px);
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:active {
+      transform: scale(0.99);
+    }
+
+    .card:focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 3px;
+      border-color: transparent;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      right: -28px;
+      bottom: -28px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 10px solid rgba(255,255,255,0.12);
+      box-shadow: inset 0 0 0 8px rgba(0,0,0,0.18);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      line-height: 1.15;
+    }
+
+    .card p {
+      margin: 0;
+      max-width: 36ch;
+      font-size: clamp(1rem, 1.35vw, 1.1rem);
+      color: #fff2e8;
+    }
+
+    .tap {
+      margin-top: auto;
+      display: inline-block;
+      width: fit-content;
+      font-weight: 700;
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.28);
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+    }
+
+    .podcast { border-color: rgba(245,185,113,0.65); }
+    .skilling { border-color: rgba(255,141,109,0.65); }
+    .mindset { border-color: rgba(126,214,193,0.65); }
+
+    .podcast .tap { background: rgba(245,185,113,0.2); }
+    .skilling .tap { background: rgba(255,141,109,0.2); }
+    .mindset .tap { background: rgba(126,214,193,0.2); }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      padding-bottom: 4px;
+    }
+
+    @media (min-width: 820px) {
+      .card { grid-column: span 4; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card { transition: none; }
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to content</a>
+  <main class="shell" aria-label="Listening Lounge Main Menu">
+    <header class="header">
+      <div class="eyebrow">AI Skills Navigator Experience</div>
+      <h1>Listening Lounge</h1>
+      <p class="sub">Choose a track to start your AI learning experience.</p>
+    </header>
 
-  <header class="hero" role="banner">
-    <p class="eyebrow">AI Skills Navigator Experience</p>
-    <h1>Listening Lounge</h1>
-    <p class="intro">Drop the needle and choose your next learning track.</p>
-  </header>
+    <section class="grid" aria-label="Three destination choices">
+      <!-- TODO: Replace AI_NAV_PODCAST_URL with your real AI Skills Navigator URL -->
+      <a class="card podcast" id="podcastLink" href="AI_NAV_PODCAST_URL" target="_blank" rel="noopener noreferrer" aria-label="Open AI-Generated Podcast in AI Skills Navigator">
+        <h2>AI-Generated Podcast</h2>
+        <p>Hear key ideas and highlights in a quick, story-driven audio experience.</p>
+        <span class="tap">Tap to open</span>
+      </a>
 
-  <main id="main-content" class="main" aria-label="Now Spinning">
-    <section class="selector" aria-labelledby="now-spinning-title">
-      <h2 id="now-spinning-title">Now Spinning</h2>
+      <!-- TODO: Replace AI_NAV_SKILLING_URL with your real AI Skills Navigator URL -->
+      <a class="card skilling" id="skillingLink" href="AI_NAV_SKILLING_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
+        <h2>Skilling Sessions</h2>
+        <p>Jump into guided sessions with practical steps you can apply right away.</p>
+        <span class="tap">Tap to open</span>
+      </a>
 
-      <div class="card-grid">
-        <article class="record-card" aria-label="Podcast Feature option">
-          <div class="vinyl" aria-hidden="true"></div>
-          <h3>Podcast Feature</h3>
-          <p>Tune into stories and insights from AI voices shaping what’s next.</p>
-          <a class="cta" href="PASTE_URL_1" target="_blank" rel="noopener noreferrer" aria-label="Open Podcast Feature in AI Skills Navigator">
-            Open in AI Skills Navigator
-          </a>
-        </article>
-
-        <article class="record-card" aria-label="Skilling Sessions option">
-          <div class="vinyl" aria-hidden="true"></div>
-          <h3>Skilling Sessions</h3>
-          <p>Join guided sessions to level up practical AI skills, fast.</p>
-          <a class="cta" href="PASTE_URL_2" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
-            Open in AI Skills Navigator
-          </a>
-        </article>
-
-        <article class="record-card" aria-label="Mindset Training option">
-          <div class="vinyl" aria-hidden="true"></div>
-          <h3>Mindset Training</h3>
-          <p>Build habits and confidence to lead with an AI-first mindset.</p>
-          <a class="cta" href="PASTE_URL_3" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
-            Open in AI Skills Navigator
-          </a>
-        </article>
-      </div>
+      <!-- TODO: Replace AI_NAV_MINDSET_URL with your real AI Skills Navigator URL -->
+      <a class="card mindset" id="mindsetLink" href="AI_NAV_MINDSET_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
+        <h2>Mindset Training</h2>
+        <p>Build confidence and habits for working effectively with AI every day.</p>
+        <span class="tap">Tap to open</span>
+      </a>
     </section>
+
+    <footer class="footer">Powered by AI Skills Navigator</footer>
   </main>
 
-  <footer class="footer">
-    <p>Powered by AI Skills Navigator</p>
-  </footer>
+  <script>
+    // Prevent broken navigation if placeholder URLs were not replaced yet.
+    const links = [
+      { id: "podcastLink", placeholder: "AI_NAV_PODCAST_URL" },
+      { id: "skillingLink", placeholder: "AI_NAV_SKILLING_URL" },
+      { id: "mindsetLink", placeholder: "AI_NAV_MINDSET_URL" }
+    ];
 
-  <script src="script.js"></script>
+    links.forEach(({ id, placeholder }) => {
+      const el = document.getElementById(id);
+      el.addEventListener("click", (e) => {
+        if (el.getAttribute("href") === placeholder) {
+          e.preventDefault();
+          alert("Replace placeholder URL in index.html before publishing.");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
