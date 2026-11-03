@@ -4,223 +4,249 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Listening Lounge</title>
-  <meta name="description" content="Touchscreen Listening Lounge with 3 pathways into AI Skills Navigator." />
+  <meta name="description" content="Touchscreen Listening Lounge for AI Skills Navigator." />
   <style>
-    :root {
-      --bg: #1a120f;
-      --bg-soft: #241915;
-      --panel: #2d201b;
-      --panel-2: #3a2a23;
-      --text: #fff9f3;
-      --muted: #e7d7cb;
-      --accent-1: #f5b971;
-      --accent-2: #ff8d6d;
-      --accent-3: #7ed6c1;
-      --focus: #ffe08a;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    :root{
+      --bg-1:#180b2d;
+      --bg-2:#2b0f49;
+      --ink:#fffaf5;
+      --muted:#f7dff0;
+      --focus:#fff176;
+
+      --pod-1:#ff7a8a;
+      --pod-2:#ffb36b;
+
+      --skill-1:#62d7ff;
+      --skill-2:#55ffa9;
+
+      --mind-1:#d07cff;
+      --mind-2:#ff78d1;
+
+      --card:#2a1545cc;
+      --ring:#ffffff2f;
+      --shadow:0 14px 34px rgba(0,0,0,.35);
     }
 
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      min-height: 100%;
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%}
+    body{
       font-family: "Segoe UI", Inter, Arial, sans-serif;
-      color: var(--text);
+      color:var(--ink);
       background:
-        radial-gradient(1200px 700px at 10% -10%, #3b2720 0%, transparent 60%),
-        radial-gradient(1000px 600px at 100% 0%, #2e1f1a 0%, transparent 60%),
-        linear-gradient(180deg, var(--bg), #130d0b 100%);
+        radial-gradient(900px 500px at 8% -10%, #ff6bc133, transparent 60%),
+        radial-gradient(800px 500px at 100% 0%, #6be7ff33, transparent 60%),
+        linear-gradient(160deg,var(--bg-1),var(--bg-2));
+      overflow-x:hidden;
     }
 
-    .shell {
-      min-height: 100vh;
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      padding: clamp(16px, 2vw, 28px);
-      gap: 18px;
+    .wrap{
+      min-height:100vh;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:18px;
+      padding:clamp(14px,2vw,28px);
     }
 
-    .header {
-      text-align: center;
-      padding-top: 8px;
+    .hero{
+      text-align:center;
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .chip{
+      display:inline-block;
+      padding:.4rem .85rem;
+      border-radius:999px;
+      border:1px solid #ffffff42;
+      background:#ffffff1a;
+      color:var(--muted);
+      font-weight:600;
+      font-size:clamp(.85rem,1.4vw,1rem);
+      letter-spacing:.02em;
+    }
+    h1{
+      margin:.75rem 0 .35rem;
+      font-size:clamp(2.1rem,6vw,4rem);
+      line-height:1.02;
+      letter-spacing:.02em;
+      text-shadow:0 0 24px #ff8fe955;
+    }
+    .sub{
+      margin:0 auto;
+      max-width:68ch;
+      color:var(--muted);
+      font-size:clamp(1rem,2vw,1.25rem);
     }
 
-    .eyebrow {
-      display: inline-block;
-      font-size: clamp(0.9rem, 1.2vw, 1rem);
-      color: var(--muted);
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.14);
-      padding: 0.4rem 0.8rem;
-      border-radius: 999px;
-      letter-spacing: 0.02em;
+    .now-spinning{
+      width:min(1200px,100%);
+      margin:0 auto;
+      padding:.4rem .2rem 0;
     }
 
-    h1 {
-      margin: 12px 0 8px;
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      line-height: 1.05;
-      letter-spacing: 0.02em;
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:clamp(14px,1.8vw,24px);
+      margin-top:12px;
     }
 
-    .sub {
-      margin: 0 auto;
-      max-width: 70ch;
-      font-size: clamp(1rem, 1.7vw, 1.25rem);
-      color: var(--muted);
-    }
-
-    .grid {
-      width: min(1200px, 100%);
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: clamp(14px, 1.8vw, 22px);
-      align-content: center;
-    }
-
-    .card {
-      grid-column: span 12;
-      text-decoration: none;
-      color: inherit;
-      background: linear-gradient(160deg, var(--panel), var(--panel-2));
-      border: 2px solid rgba(255,255,255,0.14);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
-      padding: clamp(18px, 2vw, 28px);
-      min-height: clamp(180px, 24vh, 240px);
-      display: grid;
-      gap: 10px;
-      align-content: start;
-      touch-action: manipulation;
+    .card{
+      grid-column:span 12;
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      border:2px solid var(--ring);
+      background:var(--card);
+      text-decoration:none;
+      color:inherit;
+      box-shadow:var(--shadow);
+      min-height:220px;
+      padding:20px;
+      display:grid;
+      gap:10px;
+      align-content:start;
+      touch-action:manipulation;
       -webkit-tap-highlight-color: transparent;
-      transition: transform 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
-      position: relative;
-      overflow: hidden;
+      transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
     }
 
-    .card:active {
-      transform: scale(0.99);
+    .card:active{ transform:scale(.985); }
+    .card:focus-visible{
+      outline:4px solid var(--focus);
+      outline-offset:3px;
+      border-color:transparent;
     }
 
-    .card:focus-visible {
-      outline: 4px solid var(--focus);
-      outline-offset: 3px;
-      border-color: transparent;
+    .card .vinyl{
+      width:78px;height:78px;border-radius:50%;
+      background:
+        radial-gradient(circle at center,#0c0c0c 0 10px,#3a3a3a 10px 14px,#0c0c0c 14px 17px,transparent 17px),
+        repeating-radial-gradient(circle at center,#181818 0 3px,#222 3px 6px);
+      border:2px solid #000;
+      box-shadow:inset 0 0 0 1px #ffffff14, 0 6px 12px #00000066;
     }
 
-    .card::after {
-      content: "";
-      position: absolute;
-      right: -28px;
-      bottom: -28px;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 10px solid rgba(255,255,255,0.12);
-      box-shadow: inset 0 0 0 8px rgba(0,0,0,0.18);
-      opacity: 0.9;
-      pointer-events: none;
+    .card h2{
+      margin:2px 0 0;
+      font-size:clamp(1.45rem,2.4vw,2rem);
+      line-height:1.1;
+    }
+    .card p{
+      margin:0;
+      max-width:34ch;
+      font-size:clamp(1rem,1.4vw,1.12rem);
+      color:#fff3fb;
     }
 
-    .card h2 {
-      margin: 0;
-      font-size: clamp(1.5rem, 2.4vw, 2rem);
-      line-height: 1.15;
+    .tap{
+      margin-top:auto;
+      display:inline-block;
+      width:fit-content;
+      font-weight:800;
+      letter-spacing:.01em;
+      border-radius:999px;
+      padding:.6rem .95rem;
+      font-size:clamp(1rem,1.3vw,1.1rem);
+      border:1px solid #ffffff4d;
+      background:#00000033;
     }
 
-    .card p {
-      margin: 0;
-      max-width: 36ch;
-      font-size: clamp(1rem, 1.35vw, 1.1rem);
-      color: #fff2e8;
+    .card::after{
+      content:"";
+      position:absolute;
+      right:-40px;bottom:-40px;
+      width:150px;height:150px;border-radius:50%;
+      border:12px solid #ffffff24;
+      pointer-events:none;
     }
 
-    .tap {
-      margin-top: auto;
-      display: inline-block;
-      width: fit-content;
-      font-weight: 700;
-      font-size: clamp(1rem, 1.3vw, 1.1rem);
-      background: rgba(0,0,0,0.22);
-      border: 1px solid rgba(255,255,255,0.28);
-      border-radius: 999px;
-      padding: 0.55rem 0.9rem;
+    .podcast{ background:linear-gradient(155deg,var(--pod-1),var(--pod-2)); color:#2f0712; }
+    .podcast p{ color:#3f1221; }
+    .podcast .tap{ background:#ffffffd9; color:#3b1020; }
+    .podcast .vinyl{ transform:rotate(-10deg); }
+
+    .skilling{ background:linear-gradient(155deg,var(--skill-1),var(--skill-2)); color:#042930; }
+    .skilling p{ color:#083944; }
+    .skilling .tap{ background:#ffffffd9; color:#0a3640; }
+    .skilling .vinyl{ transform:rotate(5deg); }
+
+    .mindset{ background:linear-gradient(155deg,var(--mind-1),var(--mind-2)); color:#2e0a43; }
+    .mindset p{ color:#3f1258; }
+    .mindset .tap{ background:#ffffffd9; color:#41145b; }
+    .mindset .vinyl{ transform:rotate(-4deg); }
+
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      font-weight:600;
+      padding:4px 0 10px;
+      font-size:.98rem;
     }
 
-    .podcast { border-color: rgba(245,185,113,0.65); }
-    .skilling { border-color: rgba(255,141,109,0.65); }
-    .mindset { border-color: rgba(126,214,193,0.65); }
-
-    .podcast .tap { background: rgba(245,185,113,0.2); }
-    .skilling .tap { background: rgba(255,141,109,0.2); }
-    .mindset .tap { background: rgba(126,214,193,0.2); }
-
-    .footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.95rem;
-      padding-bottom: 4px;
+    @media (min-width:860px){
+      .card{grid-column:span 4; min-height:300px; padding:24px;}
     }
 
-    @media (min-width: 820px) {
-      .card { grid-column: span 4; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .card { transition: none; }
+    @media (prefers-reduced-motion:no-preference){
+      .card:hover{ transform:translateY(-2px); }
+      .card:hover .vinyl{ animation:spin 1.15s linear infinite; }
+      @keyframes spin{ to{ transform:rotate(360deg);} }
     }
   </style>
 </head>
 <body>
-  <main class="shell" aria-label="Listening Lounge Main Menu">
-    <header class="header">
-      <div class="eyebrow">AI Skills Navigator Experience</div>
+  <main class="wrap" aria-label="Listening Lounge main menu">
+    <header class="hero">
+      <div class="chip">AI Skills Navigator Experience</div>
       <h1>Listening Lounge</h1>
-      <p class="sub">Choose a track to start your AI learning experience.</p>
+      <p class="sub">Pick a track and jump straight into your next AI learning moment.</p>
     </header>
 
-    <section class="grid" aria-label="Three destination choices">
-      <!-- TODO: Replace AI_NAV_PODCAST_URL with your real AI Skills Navigator URL -->
-      <a class="card podcast" id="podcastLink" href="AI_NAV_PODCAST_URL" target="_blank" rel="noopener noreferrer" aria-label="Open AI-Generated Podcast in AI Skills Navigator">
-        <h2>AI-Generated Podcast</h2>
-        <p>Hear key ideas and highlights in a quick, story-driven audio experience.</p>
-        <span class="tap">Tap to open</span>
-      </a>
+    <section class="now-spinning" aria-label="Now Spinning choices">
+      <div class="grid">
+        <!-- TODO: Replace AI_NAV_PODCAST_URL with your real URL -->
+        <a id="podcastLink" class="card podcast" href="AI_NAV_PODCAST_URL" target="_blank" rel="noopener noreferrer" aria-label="Open AI-Generated Podcast in AI Skills Navigator">
+          <div class="vinyl" aria-hidden="true"></div>
+          <h2>AI-Generated Podcast</h2>
+          <p>Listen to a quick, story-style audio experience with practical AI highlights.</p>
+          <span class="tap">Tap to open</span>
+        </a>
 
-      <!-- TODO: Replace AI_NAV_SKILLING_URL with your real AI Skills Navigator URL -->
-      <a class="card skilling" id="skillingLink" href="AI_NAV_SKILLING_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
-        <h2>Skilling Sessions</h2>
-        <p>Jump into guided sessions with practical steps you can apply right away.</p>
-        <span class="tap">Tap to open</span>
-      </a>
+        <!-- TODO: Replace AI_NAV_SKILLING_URL with your real URL -->
+        <a id="skillingLink" class="card skilling" href="AI_NAV_SKILLING_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
+          <div class="vinyl" aria-hidden="true"></div>
+          <h2>Skilling Sessions</h2>
+          <p>Explore guided sessions with actionable skills you can apply right away.</p>
+          <span class="tap">Tap to open</span>
+        </a>
 
-      <!-- TODO: Replace AI_NAV_MINDSET_URL with your real AI Skills Navigator URL -->
-      <a class="card mindset" id="mindsetLink" href="AI_NAV_MINDSET_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
-        <h2>Mindset Training</h2>
-        <p>Build confidence and habits for working effectively with AI every day.</p>
-        <span class="tap">Tap to open</span>
-      </a>
+        <!-- TODO: Replace AI_NAV_MINDSET_URL with your real URL -->
+        <a id="mindsetLink" class="card mindset" href="AI_NAV_MINDSET_URL" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
+          <div class="vinyl" aria-hidden="true"></div>
+          <h2>Mindset Training</h2>
+          <p>Build confidence and habits for adopting an AI-first way of working.</p>
+          <span class="tap">Tap to open</span>
+        </a>
+      </div>
     </section>
 
     <footer class="footer">Powered by AI Skills Navigator</footer>
   </main>
 
   <script>
-    // Prevent broken navigation if placeholder URLs were not replaced yet.
-    const links = [
-      { id: "podcastLink", placeholder: "AI_NAV_PODCAST_URL" },
-      { id: "skillingLink", placeholder: "AI_NAV_SKILLING_URL" },
-      { id: "mindsetLink", placeholder: "AI_NAV_MINDSET_URL" }
-    ];
+    // Guard against placeholder links before publishing.
+    const placeholders = {
+      podcastLink: "AI_NAV_PODCAST_URL",
+      skillingLink: "AI_NAV_SKILLING_URL",
+      mindsetLink: "AI_NAV_MINDSET_URL"
+    };
 
-    links.forEach(({ id, placeholder }) => {
+    Object.entries(placeholders).forEach(([id, placeholder]) => {
       const el = document.getElementById(id);
       el.addEventListener("click", (e) => {
         if (el.getAttribute("href") === placeholder) {
           e.preventDefault();
-          alert("Replace placeholder URL in index.html before publishing.");
+          alert("Add your real AI Skills Navigator URL in index.html first.");
         }
       });
     });
