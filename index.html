@@ -10,13 +10,10 @@
     :root{
       color-scheme: dark;
       --ink:#211510;
-      --wood:#38231b;
-      --wood-2:#4a2d22;
       --cream:#f8eedb;
       --muted:#d3c3a9;
       --amber:#e9b768;
       --teal:#83b8ad;
-      --rose:#d9a0be;
       --line:rgba(255,228,183,.24);
       --card:#2d1d19;
     }
@@ -34,7 +31,12 @@
       min-height:100vh;
     }
 
-    a:focus-visible{outline:3px solid #aee2d6;outline-offset:4px}
+    h1,h2,h3,p{margin-top:0}
+    h1,h2{
+      font-family:Georgia,"Times New Roman",serif;
+      font-weight:400;
+      line-height:1.08;
+    }
 
     .shell{
       max-width:1360px;
@@ -58,6 +60,27 @@
       text-transform:uppercase;
     }
 
+    .ghost-btn,.back-btn{
+      border:1px solid var(--line);
+      background:rgba(25,14,12,.65);
+      color:var(--cream);
+      border-radius:50px;
+      padding:12px 18px;
+      min-height:48px;
+      font:inherit;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .eyebrow{
+      font-size:.76rem;
+      font-weight:800;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+      color:var(--amber);
+      margin:0 0 10px;
+    }
+
     .hero{
       position:relative;
       min-height:360px;
@@ -78,22 +101,6 @@
     }
 
     .hero-copy{max-width:760px;position:relative;z-index:1}
-    .eyebrow{
-      font-size:.76rem;
-      font-weight:800;
-      letter-spacing:.22em;
-      text-transform:uppercase;
-      color:var(--amber);
-      margin:0 0 10px;
-    }
-
-    h1,h2,h3,p{margin-top:0}
-    h1,h2{
-      font-family:Georgia,"Times New Roman",serif;
-      font-weight:400;
-      line-height:1.08;
-    }
-
     h1{
       font-size:clamp(2.6rem,6.4vw,6.2rem);
       letter-spacing:-.04em;
@@ -154,14 +161,16 @@
     }
 
     .record{
-      text-decoration:none;
+      width:100%;
       border:1px solid rgba(255,227,184,.17);
       border-radius:13px;
       background:var(--card);
       color:var(--cream);
       padding:10px 10px 16px;
       min-height:360px;
-      display:block;
+      text-align:left;
+      font:inherit;
+      cursor:pointer;
       transition:transform .16s,border-color .16s,box-shadow .16s;
       touch-action:manipulation;
       -webkit-tap-highlight-color: transparent;
@@ -239,19 +248,7 @@
     .record p{
       color:var(--muted);
       font-size:.9rem;
-      margin:0 0 12px;
-    }
-
-    .cta{
-      display:inline-block;
-      min-height:48px;
-      padding:12px 16px;
-      border-radius:8px;
-      font-weight:800;
-      border:1px solid var(--line);
-      background:rgba(25,14,12,.65);
-      color:var(--cream);
-      text-decoration:none;
+      margin:0;
     }
 
     .shelf-edge{
@@ -262,15 +259,121 @@
       box-shadow:0 9px 16px #0d0807;
     }
 
+    .detail{
+      padding:40px 0 12px;
+    }
+
+    .detail.hidden,.browse.hidden{display:none}
+
+    .detail-grid{
+      display:grid;
+      grid-template-columns:minmax(260px,420px) minmax(0,1fr);
+      gap:clamp(24px,5vw,80px);
+      align-items:center;
+      padding:24px 0 0;
+    }
+
+    .detail-cover{
+      aspect-ratio:1;
+      border-radius:10px;
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      background:var(--cover);
+      box-shadow:18px 24px 35px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.2);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .detail-cover:before{
+      content:"";
+      position:absolute;
+      width:90%;height:90%;
+      border:1px solid rgba(255,243,216,.26);
+      border-radius:50%;
+      top:24%;left:36%;
+      box-shadow:0 0 0 22px rgba(255,244,218,.035),0 0 0 48px rgba(255,244,218,.03);
+    }
+
+    .detail-cover span,.detail-cover strong{position:relative;z-index:1}
+    .detail-cover span{
+      font-size:.72rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:800;
+    }
+
+    .detail-cover strong{
+      font:400 clamp(2rem,4.5vw,4.8rem)/.95 Georgia,serif;
+      max-width:90%;
+      overflow-wrap:anywhere;
+    }
+
+    .detail-copy > p:not(.eyebrow){
+      color:var(--muted);
+      font-size:1.08rem;
+      margin-bottom:18px;
+      max-width:62ch;
+    }
+
+    .try-box{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:linear-gradient(135deg,rgba(125,75,44,.26),rgba(16,11,10,.75));
+      padding:18px;
+      margin:16px 0 24px;
+    }
+
+    .try-box h3{
+      margin:0 0 8px;
+      font-family:Georgia,serif;
+      font-size:1.35rem;
+      font-weight:400;
+    }
+
+    .try-box p{
+      margin:0;
+      color:var(--muted);
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:8px;
+    }
+
+    .primary-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      border-radius:8px;
+      padding:12px 22px;
+      font-weight:800;
+      text-decoration:none;
+      background:var(--amber);
+      color:#24130d;
+      border:1px solid var(--amber);
+    }
+
+    .primary-link:hover{background:#f6cd89}
     .footer{
-      margin:34px 0;
+      margin:36px 0;
       color:var(--muted);
       font-size:.82rem;
       text-align:center;
     }
 
+    button:focus-visible,a:focus-visible{
+      outline:3px solid #aee2d6;
+      outline-offset:4px;
+    }
+
     @media (max-width:950px){
       .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .detail-grid{grid-template-columns:1fr}
       .pendant{right:8%}
     }
 
@@ -298,16 +401,17 @@
   <div class="shell">
     <header class="top">
       <div class="brand">Listening Lounge <span aria-hidden="true">/</span> AI Skills Navigator</div>
+      <button id="startOver" class="ghost-btn" type="button">Start over</button>
     </header>
 
     <main>
-      <section aria-labelledby="welcome-title">
+      <section id="browse" class="browse" aria-labelledby="welcome-title">
         <div class="hero">
           <div class="pendant" aria-hidden="true"></div>
           <div class="hero-copy">
             <p class="eyebrow">Take a moment. Find your next listen.</p>
             <h1 id="welcome-title">Pull up a seat.<br>Pick a record.</h1>
-            <p>Choose one experience below to open directly in AI Skills Navigator.</p>
+            <p>Choose one experience below to learn more, then open it in AI Skills Navigator.</p>
           </div>
         </div>
 
@@ -316,53 +420,167 @@
             <p class="eyebrow">The collection</p>
             <h2>What sounds good?</h2>
           </div>
-          <p>Tap a sleeve to launch.</p>
+          <p>Tap a sleeve to explore.</p>
         </div>
 
         <div class="shelf">
-          <div class="grid">
-            <a class="record" href="https://aiskillsnavigator.microsoft.com/en-us/player?catalogId=module-17b6568933a4fdc7bdcaa1911576b22ac47173f39ef0127bb12485f8c560341e" target="_blank" rel="noopener noreferrer" aria-label="Open AI-Generated Podcast in AI Skills Navigator">
-              <div class="cover" style="--cover:linear-gradient(150deg,#9d7653,#483026 62%,#242021)">
-                <span>Listening Lounge</span>
-                <strong>AI-Generated Podcast</strong>
-                <span>Side A</span>
-              </div>
-              <h3>AI-Generated Podcast</h3>
-              <small>Story + audio format</small>
-            <p>Prefer to listen? See how quickly you can turn a Microsoft Learn module into a podcast you can take with you.</p>
-              <span class="cta">Open in AI Skills Navigator</span>
-            </a>
-
-            <a class="record" href="https://aiskillsnavigator.microsoft.com/en-us/explore/search?type=skillingsession" target="_blank" rel="noopener noreferrer" aria-label="Open Skilling Sessions in AI Skills Navigator">
-              <div class="cover" style="--cover:linear-gradient(145deg,#49746f,#26443f 60%,#1d2929)">
-                <span>Listening Lounge</span>
-                <strong>Skilling Sessions</strong>
-                <span>Side B</span>
-              </div>
-              <h3>Skilling Sessions</h3>
-              <small>Hands-on learning</small>
-              <p>Build skills in guided sessions with a coach built in to help you along the way.</p>
-              <span class="cta">Open in AI Skills Navigator</span>
-            </a>
-
-            <a class="record" href="https://aiskillsnavigator.microsoft.com/en-us/explore/search/video-b958f193e6f069f9e81d26605efb5c2074c349e3bb6b56c76ff25cb4add30840" target="_blank" rel="noopener noreferrer" aria-label="Open Mindset Training in AI Skills Navigator">
-              <div class="cover" style="--cover:linear-gradient(145deg,#7f5f88,#493451 58%,#2a1f32)">
-                <span>Listening Lounge</span>
-                <strong>Human SKills for a Changing World</strong>
-                <span>Bonus Track</span>
-              </div>
-              <h3>Human Skills for a Changing World</h3>
-              <small>Confidence + habits</small>
-              <p>Watch Dr. Gervais introduce the mindsets that help you adapt in a changing world.</p>
-              <span class="cta">Open in AI Skills Navigator</span>
-            </a>
-          </div>
+          <div class="grid" id="recordGrid"></div>
           <div class="shelf-edge" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <section id="detail" class="detail hidden" aria-labelledby="detailTitle">
+        <button id="backBtn" class="back-btn" type="button">← Back to the collection</button>
+
+        <div class="detail-grid">
+          <div class="detail-cover" id="detailCover" aria-hidden="true">
+            <span>Listening Lounge</span>
+            <strong id="detailCoverTitle"></strong>
+            <span id="detailCoverTag"></span>
+          </div>
+
+          <div class="detail-copy">
+            <p class="eyebrow" id="detailEyebrow"></p>
+            <h2 id="detailTitle"></h2>
+            <p id="detailDescription"></p>
+
+            <div class="try-box">
+              <h3>What to try</h3>
+              <p id="detailWhatToTry"></p>
+            </div>
+
+            <div class="actions">
+              <a id="detailCta" class="primary-link" href="#" target="_blank" rel="noopener noreferrer">Open in AI Skills Navigator</a>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
     <footer class="footer">Powered by AI Skills Navigator</footer>
   </div>
+
+  <script>
+    (() => {
+      "use strict";
+
+      const experiences = [
+        {
+          id: "podcast",
+          menuTitle: "AI-Generated Podcast",
+          menuLabel: "Story + audio format",
+          menuDescription: "Prefer to listen? See how quickly you can turn a Microsoft Learn module into a podcast you can take with you.",
+          detailTitle: "AI-generated podcasts",
+          detailEyebrow: "Audio-first learning",
+          detailDescription: "Prefer to listen? See how you can turn a Microsoft Learn module into a podcast and take your learning with you.",
+          detailWhatToTry: "Choose a module, see how the podcast is created, and listen to a preview.",
+          ctaText: "Try an AI-generated podcast",
+          url: "https://aiskillsnavigator.microsoft.com/en-us/player?catalogId=module-17b6568933a4fdc7bdcaa1911576b22ac47173f39ef0127bb12485f8c560341e",
+          cover: "linear-gradient(150deg,#9d7653,#483026 62%,#242021)",
+          tag: "Side A"
+        },
+        {
+          id: "skilling",
+          menuTitle: "Skilling Sessions",
+          menuLabel: "Hands-on learning",
+          menuDescription: "Build skills in guided sessions with a coach built in to help you along the way.",
+          detailTitle: "Skilling sessions",
+          detailEyebrow: "Coach-supported learning",
+          detailDescription: "Learn with a coach built in. Explore a guided session and see how the integrated coach can help you work through the material as you go.",
+          detailWhatToTry: "Open a session, ask the coach a question, and see how it supports your learning.",
+          ctaText: "Explore a skilling session",
+          url: "https://aiskillsnavigator.microsoft.com/en-us/explore/search?type=skillingsession",
+          cover: "linear-gradient(145deg,#49746f,#26443f 60%,#1d2929)",
+          tag: "Side B"
+        },
+        {
+          id: "mindset",
+          menuTitle: "Human Skills for a Changing World",
+          menuLabel: "Confidence + habits",
+          menuDescription: "Watch Dr. Gervais introduce the mindsets that help you adapt in a changing world.",
+          detailTitle: "Human Skills for a Changing World",
+          detailEyebrow: "Mindsets for change",
+          detailDescription: "Watch Dr. Gervais introduce the mindsets that help you adapt in a changing world.",
+          detailWhatToTry: "Watch the preview of High-Performance Mindsets for a Changing World, then explore the course in AI Skills Navigator.",
+          ctaText: "Watch the course preview",
+          url: "https://aiskillsnavigator.microsoft.com/en-us/explore/search/video-b958f193e6f069f9e81d26605efb5c2074c349e3bb6b56c76ff25cb4add30840",
+          cover: "linear-gradient(145deg,#7f5f88,#493451 58%,#2a1f32)",
+          tag: "Bonus Track"
+        }
+      ];
+
+      const browse = document.getElementById("browse");
+      const detail = document.getElementById("detail");
+      const recordGrid = document.getElementById("recordGrid");
+      const backBtn = document.getElementById("backBtn");
+      const startOver = document.getElementById("startOver");
+
+      const detailTitle = document.getElementById("detailTitle");
+      const detailEyebrow = document.getElementById("detailEyebrow");
+      const detailDescription = document.getElementById("detailDescription");
+      const detailWhatToTry = document.getElementById("detailWhatToTry");
+      const detailCta = document.getElementById("detailCta");
+      const detailCover = document.getElementById("detailCover");
+      const detailCoverTitle = document.getElementById("detailCoverTitle");
+      const detailCoverTag = document.getElementById("detailCoverTag");
+
+      let lastTrigger = null;
+
+      function showBrowse() {
+        detail.classList.add("hidden");
+        browse.classList.remove("hidden");
+        window.scrollTo(0, 0);
+        if (lastTrigger) lastTrigger.focus();
+      }
+
+      function showDetail(exp, triggerEl) {
+        lastTrigger = triggerEl || null;
+
+        detailTitle.textContent = exp.detailTitle;
+        detailEyebrow.textContent = exp.detailEyebrow;
+        detailDescription.textContent = exp.detailDescription;
+        detailWhatToTry.textContent = exp.detailWhatToTry;
+        detailCta.textContent = exp.ctaText;
+        detailCta.href = exp.url;
+
+        detailCover.style.setProperty("--cover", exp.cover);
+        detailCoverTitle.textContent = exp.menuTitle;
+        detailCoverTag.textContent = exp.tag;
+
+        browse.classList.add("hidden");
+        detail.classList.remove("hidden");
+        window.scrollTo(0, 0);
+        backBtn.focus();
+      }
+
+      function buildCards() {
+        experiences.forEach((exp) => {
+          const card = document.createElement("button");
+          card.type = "button";
+          card.className = "record";
+          card.setAttribute("aria-label", "Open details for " + exp.menuTitle);
+
+          card.innerHTML = `
+            <div class="cover" style="--cover:${exp.cover}" aria-hidden="true">
+              <span>Listening Lounge</span>
+              <strong>${exp.menuTitle}</strong>
+              <span>${exp.tag}</span>
+            </div>
+            <h3>${exp.menuTitle}</h3>
+            <small>${exp.menuLabel}</small>
+            <p>${exp.menuDescription}</p>
+          `;
+
+          card.addEventListener("click", () => showDetail(exp, card));
+          recordGrid.appendChild(card);
+        });
+      }
+
+      backBtn.addEventListener("click", showBrowse);
+      startOver.addEventListener("click", showBrowse);
+
+      buildCards();
+    })();
+  </script>
 </body>
 </html>
