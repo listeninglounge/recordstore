@@ -4,38 +4,57 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Listening Lounge</title>
-  <meta name="description" content="Touchscreen Listening Lounge for AI Skills Navigator." />
+  <meta name="description" content="Listening Lounge touchscreen experience for AI Skills Navigator." />
   <style>
     :root{
-      --wood-dark:#2a1b14;
-      --wood-mid:#3a261c;
-      --wood-light:#5a3b2c;
-      --cream:#f5eadb;
-      --ink:#1f1814;
-      --gold:#d8ab63;
-      --neon-pink:#ff6ea8;
-      --neon-teal:#59e3d2;
-      --neon-amber:#ffbe6b;
-      --focus:#fff08a;
-      --shadow:0 12px 28px rgba(0,0,0,.28);
+      --wood-1:#2b1a12;
+      --wood-2:#3a2419;
+      --wood-3:#4b3022;
+      --wood-4:#5c3a2a;
+      --cream:#f4e8d9;
+      --text:#f7efe5;
+      --muted:#dcc7ae;
+      --gold:#d8a86a;
+      --gold-soft:#e9c898;
+      --card:#f8f0e6;
+      --card-ink:#2f2017;
+      --focus:#fff29a;
+      --shadow:0 16px 34px rgba(0,0,0,.35);
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;min-height:100%}
+
     body{
-      font-family:"Trebuchet MS","Segoe UI",Arial,sans-serif;
-      color:var(--cream);
+      font-family: "Trebuchet MS","Segoe UI",Arial,sans-serif;
+      color:var(--text);
       background:
-        radial-gradient(1200px 600px at 12% -10%, rgba(255,110,168,.18), transparent 60%),
-        radial-gradient(1000px 600px at 90% -15%, rgba(89,227,210,.14), transparent 60%),
-        linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,.20)),
+        radial-gradient(900px 380px at 20% -10%, rgba(255,210,150,.24), transparent 60%),
+        radial-gradient(900px 380px at 80% -10%, rgba(255,200,120,.20), transparent 62%),
+        radial-gradient(1300px 700px at 50% 120%, rgba(0,0,0,.35), transparent 60%),
         repeating-linear-gradient(
           90deg,
-          var(--wood-dark) 0 40px,
-          var(--wood-mid) 40px 80px,
-          var(--wood-light) 80px 120px
+          var(--wood-1) 0 38px,
+          var(--wood-2) 38px 76px,
+          var(--wood-3) 76px 114px,
+          var(--wood-4) 114px 152px
         );
       overflow-x:hidden;
+    }
+
+    /* subtle grain + vignette */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.02) 0 1px,
+          rgba(0,0,0,.02) 1px 2px
+        ),
+        radial-gradient(circle at 50% 30%, transparent 0 35%, rgba(0,0,0,.42) 100%);
+      mix-blend-mode:soft-light;
     }
 
     .wrap{
@@ -44,6 +63,8 @@
       grid-template-rows:auto auto 1fr auto;
       gap:14px;
       padding:clamp(14px,2vw,28px);
+      position:relative;
+      z-index:1;
     }
 
     .hero{
@@ -54,53 +75,51 @@
 
     .chip{
       display:inline-block;
-      padding:.42rem .9rem;
+      padding:.45rem .9rem;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.36);
+      border:1px solid rgba(255,255,255,.34);
       background:rgba(0,0,0,.22);
-      color:#f7e7d1;
+      color:var(--muted);
       font-weight:700;
       letter-spacing:.04em;
-      font-size:clamp(.85rem,1.4vw,1rem);
+      font-size:clamp(.82rem,1.3vw,1rem);
+      box-shadow:0 0 0 1px rgba(216,168,106,.22) inset;
     }
 
     h1{
       margin:.75rem 0 .35rem;
-      font-size:clamp(2.1rem,6vw,4.1rem);
+      font-size:clamp(2.1rem,6vw,4.2rem);
       line-height:1.02;
       letter-spacing:.02em;
-      text-shadow:
-        0 0 14px rgba(255,110,168,.45),
-        0 0 24px rgba(89,227,210,.28);
+      text-shadow:0 2px 0 rgba(0,0,0,.25), 0 0 18px rgba(255,210,150,.22);
     }
 
     .sub{
       margin:0 auto;
-      max-width:70ch;
-      color:#f2dbc0;
-      font-size:clamp(1rem,2vw,1.25rem);
+      max-width:68ch;
+      color:var(--muted);
+      font-size:clamp(1rem,2vw,1.2rem);
     }
 
     .marquee{
-      width:min(1000px,100%);
+      width:min(1020px,100%);
       margin:0 auto;
-      border-top:2px solid rgba(216,171,99,.7);
-      border-bottom:2px solid rgba(216,171,99,.7);
-      background:rgba(0,0,0,.24);
+      padding:.55rem .75rem;
+      border-top:2px solid rgba(216,168,106,.8);
+      border-bottom:2px solid rgba(216,168,106,.8);
       border-radius:10px;
-      padding:.5rem .75rem;
       text-align:center;
-      color:#ffd9ad;
       font-weight:700;
       letter-spacing:.08em;
-      font-size:clamp(.85rem,1.3vw,1rem);
+      color:#f2d7b3;
+      background:linear-gradient(180deg, rgba(0,0,0,.22), rgba(0,0,0,.12));
     }
 
-    .now-spinning{
+    .stage{
       width:100%;
       display:grid;
       place-items:center;
-      padding-top:.3rem;
+      padding-top:.35rem;
     }
 
     .grid{
@@ -108,27 +127,41 @@
       display:grid;
       grid-template-columns:1fr;
       gap:clamp(14px,1.8vw,24px);
+      position:relative;
+    }
+
+    /* shelf line under cards */
+    .grid::after{
+      content:"";
+      position:absolute;
+      left:2%; right:2%; bottom:-8px;
+      height:14px;
+      border-radius:8px;
+      background:linear-gradient(180deg, #6b4633, #3d271c);
+      box-shadow:0 8px 16px rgba(0,0,0,.35);
+      z-index:0;
     }
 
     .card{
+      position:relative;
+      z-index:1;
       width:100%;
       max-width:650px;
       margin-inline:auto;
-      text-decoration:none;
-      color:inherit;
-      border-radius:18px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.03)),
-        #f7efe3;
-      color:var(--ink);
-      border:3px solid #eadbc6;
-      box-shadow:var(--shadow);
       min-height:230px;
       padding:20px;
       display:grid;
       gap:10px;
       align-content:start;
-      position:relative;
+      text-decoration:none;
+      color:inherit;
+      border-radius:16px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.12)),
+        var(--card);
+      color:var(--card-ink);
+      border:3px solid #ead8c4;
+      box-shadow:var(--shadow);
       overflow:hidden;
       touch-action:manipulation;
       -webkit-tap-highlight-color: transparent;
@@ -146,25 +179,15 @@
       position:absolute;
       top:0; left:0; right:0;
       height:12px;
-      background:linear-gradient(90deg, #0000, rgba(0,0,0,.08), #0000);
-      pointer-events:none;
-    }
-
-    .card::after{
-      content:"";
-      position:absolute;
-      right:-28px; bottom:-28px;
-      width:120px; height:120px;
-      border-radius:50%;
-      border:10px solid rgba(0,0,0,.10);
+      background:linear-gradient(90deg, transparent, rgba(0,0,0,.08), transparent);
       pointer-events:none;
     }
 
     .vinyl{
-      width:76px;height:76px;border-radius:50%;
+      width:78px;height:78px;border-radius:50%;
       background:
-        radial-gradient(circle at center,#101010 0 10px,#3a3a3a 10px 14px,#111 14px 17px,transparent 17px),
-        repeating-radial-gradient(circle at center,#1a1a1a 0 3px,#242424 3px 6px);
+        radial-gradient(circle at center,#0f0f0f 0 10px,#3c3c3c 10px 14px,#111 14px 17px,transparent 17px),
+        repeating-radial-gradient(circle at center,#181818 0 3px,#242424 3px 6px);
       border:2px solid #000;
       box-shadow:inset 0 0 0 1px rgba(255,255,255,.08), 0 6px 12px rgba(0,0,0,.35);
     }
@@ -177,8 +200,8 @@
 
     .card p{
       margin:0;
-      max-width:36ch;
-      color:#3d2f25;
+      max-width:35ch;
+      color:#4a372a;
       font-size:clamp(1rem,1.35vw,1.1rem);
     }
 
@@ -194,18 +217,18 @@
       font-size:clamp(1rem,1.2vw,1.08rem);
     }
 
-    .podcast{ border-color:#ffc8a7; }
-    .podcast .tap{ background:linear-gradient(90deg,var(--neon-amber),#ffd9a8); }
+    .podcast{ border-color:#f0c18f; }
+    .podcast .tap{ background:linear-gradient(90deg,#ffd097,#ffbd74); }
 
-    .skilling{ border-color:#b7f7ed; }
-    .skilling .tap{ background:linear-gradient(90deg,var(--neon-teal),#baf8ef); }
+    .skilling{ border-color:#9fd8d0; }
+    .skilling .tap{ background:linear-gradient(90deg,#b6efe7,#8fd8cc); }
 
-    .mindset{ border-color:#ffc0e1; }
-    .mindset .tap{ background:linear-gradient(90deg,var(--neon-pink),#ffc0de); }
+    .mindset{ border-color:#d9b3ea; }
+    .mindset .tap{ background:linear-gradient(90deg,#efcffb,#dbb3ef); }
 
     .footer{
       text-align:center;
-      color:#f0dcc3;
+      color:var(--muted);
       font-weight:700;
       font-size:.98rem;
       padding:4px 0 10px;
@@ -238,7 +261,7 @@
 
     <div class="marquee" aria-hidden="true">NOW SPINNING • LISTENING LOUNGE • PICK YOUR TRACK</div>
 
-    <section class="now-spinning" aria-label="Now Spinning choices">
+    <section class="stage" aria-label="Now Spinning choices">
       <div class="grid">
         <a class="card podcast" href="https://aiskillsnavigator.microsoft.com/en-us/player?catalogId=module-17b6568933a4fdc7bdcaa1911576b22ac47173f39ef0127bb12485f8c560341e" target="_blank" rel="noopener noreferrer" aria-label="Open AI-Generated Podcast in AI Skills Navigator">
           <div class="vinyl" aria-hidden="true"></div>
