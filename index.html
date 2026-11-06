@@ -169,7 +169,7 @@
 
     .grid{
       display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
+      grid-template-columns:repeat(4,minmax(0,1fr));
       gap:clamp(10px,1.2vw,14px);
       min-height:0;
     }
@@ -212,8 +212,8 @@
       padding:10px 10px 10px 12px;
       background:var(--cover);
       box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.16),
-        inset 0 0 0 8px rgba(255,255,255,.03),
+        inset 0 0 0 1px rgba(255,255,255,.18),
+        inset 0 0 0 6px rgba(255,255,255,.03),
         0 10px 20px rgba(0,0,0,.3);
     }
 
@@ -222,8 +222,8 @@
       position:absolute;
       inset:0 auto 0 0;
       width:22%;
-      background:rgba(0,0,0,.28);
-      border-right:1px solid rgba(255,255,255,.2);
+      background:rgba(15,15,15,.38);
+      border-right:1px solid rgba(255,255,255,.16);
     }
 
     .cover:after{
@@ -243,17 +243,10 @@
       pointer-events:none;
     }
 
-    .cover .glare{
-      position:absolute;
-      inset:0;
-      background:linear-gradient(125deg,rgba(255,255,255,.16),transparent 35%,rgba(0,0,0,.12));
-      pointer-events:none;
-    }
-
     .cover span{
       position:relative;z-index:1;
       font-size:.56rem;
-      letter-spacing:.14em;
+      letter-spacing:.16em;
       text-transform:uppercase;
       font-weight:800;
     }
@@ -265,12 +258,16 @@
       writing-mode:vertical-rl;
       transform:rotate(180deg);
       color:rgba(255,245,225,.96);
+      font-size:.56rem;
+      font-weight:800;
+      letter-spacing:.16em;
+      text-transform:uppercase;
       max-height:88%;
     }
 
     .cover strong{
       position:relative;z-index:1;
-      font:700 clamp(1rem,1.35vw,1.4rem)/1.08 "Segoe UI",Arial,sans-serif;
+      font:800 clamp(1.05rem,1.45vw,1.52rem)/1.1 "Segoe UI",Arial,sans-serif;
       max-width:72%;
       margin-left:24%;
       margin-top:6px;
@@ -279,11 +276,12 @@
       hyphens:none;
       text-wrap:balance;
       color:#ffffff;
-      background:rgba(16,12,10,.5);
-      border:1px solid rgba(255,255,255,.24);
+      background:rgba(10,8,8,.74);
+      border:1px solid rgba(255,255,255,.38);
       border-radius:4px;
-      padding:6px 8px;
-      text-shadow:0 2px 4px rgba(0,0,0,.55);
+      padding:7px 10px;
+      text-shadow:0 2px 5px rgba(0,0,0,.7);
+      box-shadow:0 2px 8px rgba(0,0,0,.35);
     }
 
     .cover span:last-child{
@@ -291,6 +289,7 @@
       left:calc(22% + 8px);
       bottom:9px;
       color:rgba(255,245,220,.95);
+      text-shadow:0 1px 2px rgba(0,0,0,.65);
     }
 
     .record h3{
@@ -460,7 +459,7 @@
     }
 
     @media (max-width:950px){
-      .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .detail-grid{grid-template-columns:minmax(220px,320px) minmax(0,1fr)}
       .pendant{right:8%}
       h1{white-space:normal}
@@ -563,7 +562,7 @@
       const experiences = [
         {
           id: "podcast",
-          menuTitle: "AI-Generated Podcast",
+          menuTitle: "Transform content with AI",
           menuLabel: "Story + audio format",
           menuDescription: "Prefer to listen? See how quickly you can turn a Microsoft Learn module into a podcast you can take with you.",
           detailTitle: "AI-generated podcasts",
@@ -572,7 +571,7 @@
           detailWhatToTry: "Choose a module, see how the podcast is created, and listen to a preview.",
           ctaText: "Try an AI-generated podcast",
           url: "https://aiskillsnavigator.microsoft.com/en-us/player?catalogId=module-17b6568933a4fdc7bdcaa1911576b22ac47173f39ef0127bb12485f8c560341e",
-          cover: "linear-gradient(135deg,#241f63 0 46%,#ef1f95 46% 74%,#241f63 74% 100%),linear-gradient(45deg,transparent 0 40%,rgba(255,255,255,.08) 40% 44%,transparent 44% 100%),#241f63",
+          cover: "linear-gradient(135deg,#241f63 0 42%,#ef1f95 42% 69%,#2e2877 69% 100%)",
           tag: "Side A"
         },
         {
@@ -602,6 +601,20 @@
           url: "https://aiskillsnavigator.microsoft.com/en-us/explore/search/video-b958f193e6f069f9e81d26605efb5c2074c349e3bb6b56c76ff25cb4add30840",
           cover: "radial-gradient(circle at 72% 52%,#1d7483 0 15%,transparent 15% 100%),repeating-radial-gradient(circle at 72% 52%,#2ab6b8 0 10px,#0d5e75 10px 20px),#1eaab0",
           tag: "Bonus Track"
+        },
+        {
+          id: "power-boosts",
+          menuTitle: "Power Boosts",
+          menuLabel: "Practice + feedback",
+          menuDescription: "Put what you've learned to the test with Practice Boost scenarios that help you improve as you go.",
+          detailTitle: "Power Boosts",
+          detailEyebrow: "Test your learning",
+          detailDescription: "Put what you've learned to the test. Practice Boost, built into modules, drops you into a realistic scenario where you talk or chat with AI, explain your thinking, and get questions, hints, and feedback that help you improve.",
+          detailWhatToTry: "Open a learning path, launch a Practice Boost scenario, explain your reasoning, and use the AI questions, hints, and feedback to sharpen your response.",
+          ctaText: "Try Power Boosts",
+          url: "https://aiskillsnavigator.microsoft.com/en-us/explore/search/learningpath-e380ec5cca12f2678dc6a56cabceecf012d6fad82124078c600f18d0025ed8c6",
+          cover: "linear-gradient(90deg,#0f2840 0 40%,transparent 40% 100%),repeating-linear-gradient(135deg,#ffb63d 0 18px,#1f4e79 18px 36px),#2f7fb7",
+          tag: "Side C"
         }
       ];
 
